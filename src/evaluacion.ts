@@ -14,8 +14,37 @@ function calcularmes(semana: number): string {
     }
   }
 }
+//------------------------------------------------
+function mostrarPromedioMensual(ventas: number[]): void {
+  let suma: number = 0;
+  let promedio: number = 0;
+  let enero : number =0;
+  let febrero : number = 0;
+  let marzo : number = 0;
+  for (let i: number = 0; i < 4; i++) {
+    enero = enero + ventas[i];
+  }
+  for (let i: number = 4; i < 8; i++) {
+    febrero = febrero + ventas[i];
+  }
+  for (let i: number = 8; i < ventas.length; i++) {
+    marzo = marzo + ventas[i];
+  }
+  suma=enero+febrero+marzo
+  promedio =  suma/ (ventas.length/4);
+  console.log("promedio venta semanal : ", promedio);}
+//------------------------------------------------
+function mostrarPromedioSemanal(ventas: number[]): void {
+  let suma: number = 0;
+  let promedio: number = 0;
+  for (let i: number = 0; i < ventas.length; i++) {
+    suma = suma + ventas[i];
+  }
+  promedio = suma / ventas.length;
+  console.log("promedio venta semanal : ", promedio);
+}
 //--------------------------------------------------------
-function ventaSemanalMinima(ventas: number[]): void {
+function mostrarVentaSemanalMinima(ventas: number[]): void {
   let minimo: number = ventas[0];
   let semana: number = 0;
   for (let i: number = 0; i < ventas.length; i++) {
@@ -35,7 +64,7 @@ function ventaSemanalMinima(ventas: number[]): void {
 }
 
 //---------------------------------------------------
-function ventaSemanalMaxima(ventas: number[]): void {
+function mostrarVentaSemanalMaxima(ventas: number[]): void {
   let maximo: number = ventas[0];
   let semana: number = 0;
   for (let i: number = 0; i < ventas.length; i++) {
@@ -66,13 +95,14 @@ function mostrarVentas(
     console.log("ventas de ", vendedores[i]);
     switch (i) {
       case 0:
-        ventaSemanalMaxima(ventasVendedor1);
-        ventaSemanalMinima(ventasVendedor1);
-
+        mostrarVentaSemanalMaxima(ventasVendedor1);
+        mostrarVentaSemanalMinima(ventasVendedor1);
+        mostrarPromedioSemanal(ventasVendedor1);
+        mostrarPromedioMensual(ventasVendedor1);
         separador();
 
         break;
-      case 1:
+      /* case 1:
         ventaSemanalMaxima(ventasVendedor2);
         break;
       case 2:
@@ -83,7 +113,7 @@ function mostrarVentas(
         break;
       case 4:
         ventaSemanalMaxima(ventasVendedor5);
-        break;
+        break;*/
     }
   }
 }
@@ -173,4 +203,4 @@ mostrarVentas(
   ventasVendedor3,
   ventasVendedor4,
   ventasVendedor5
-);
+):

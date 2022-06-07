@@ -1,12 +1,57 @@
 //----------------------Funciones-----------------------
-function calcularMaximo(ventas: number[]): number {
+function separador(): void {
+  console.log("------------------------------");
+}
+//------------------------------------------
+function calcularmes(semana: number): string {
+  if (semana <= 4) {
+    return "enero";
+  } else {
+    if (semana > 4 && semana <= 8) {
+      return "febrero";
+    } else {
+      return "marzo";
+    }
+  }
+}
+//--------------------------------------------------------
+function ventaSemanalMinima(ventas: number[]): void {
+  let minimo: number = ventas[0];
+  let semana: number = 0;
+  for (let i: number = 0; i < ventas.length; i++) {
+    if (minimo > ventas[i]) {
+      minimo = ventas[i];
+      semana = i;
+    }
+  }
+  console.log(
+    "venta minima: ",
+    minimo,
+    "semana",
+    semana,
+    "mes",
+    calcularmes(semana)
+  );
+}
+
+//---------------------------------------------------
+function ventaSemanalMaxima(ventas: number[]): void {
   let maximo: number = ventas[0];
+  let semana: number = 0;
   for (let i: number = 0; i < ventas.length; i++) {
     if (maximo < ventas[i]) {
       maximo = ventas[i];
+      semana = i;
     }
   }
-  return maximo;
+  console.log(
+    "venta maxima: ",
+    maximo,
+    "semana",
+    semana,
+    "mes",
+    calcularmes(semana)
+  );
 }
 //------------------------------------------------------
 function mostrarVentas(
@@ -21,19 +66,23 @@ function mostrarVentas(
     console.log("ventas de ", vendedores[i]);
     switch (i) {
       case 0:
-        console.log("venta maxima ", calcularMaximo(ventasVendedor1));
+        ventaSemanalMaxima(ventasVendedor1);
+        ventaSemanalMinima(ventasVendedor1);
+
+        separador();
+
         break;
       case 1:
-        console.log("venta maxima ", calcularMaximo(ventasVendedor2));
+        ventaSemanalMaxima(ventasVendedor2);
         break;
       case 2:
-        console.log("venta maxima ", calcularMaximo(ventasVendedor3));
+        ventaSemanalMaxima(ventasVendedor3);
         break;
       case 3:
-        console.log("venta maxima ", calcularMaximo(ventasVendedor4));
+        ventaSemanalMaxima(ventasVendedor4);
         break;
       case 4:
-        console.log("venta maxima ", calcularMaximo(ventasVendedor5));
+        ventaSemanalMaxima(ventasVendedor5);
         break;
     }
   }

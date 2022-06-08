@@ -3,6 +3,29 @@ function separador(): void {
   console.log("------------------------------");
 }
 //------------------------------------------
+function mejorSemana(ventas: number[]): number {
+  let maximo: number = ventas[0];
+  let semana: number = 0;
+  for (let i: number = 0; i < ventas.length; i++) {
+    if (maximo < ventas[i]) {
+      maximo = ventas[i];
+      semana = i;
+    }
+  }
+  return semana;
+}
+//------------------------------------------
+function calcularMaximo(ventas: number[]): number {
+  let maximo: number = ventas[0];
+
+  for (let i: number = 0; i < ventas.length; i++) {
+    if (maximo < ventas[i]) {
+      maximo = ventas[i];
+    }
+  }
+  return maximo;
+}
+//------------------------------------------
 function calcularmes(semana: number): string {
   if (semana <= 4) {
     return "enero";
@@ -18,9 +41,9 @@ function calcularmes(semana: number): string {
 function mostrarPromedioMensual(ventas: number[]): void {
   let suma: number = 0;
   let promedio: number = 0;
-  let enero : number =0;
-  let febrero : number = 0;
-  let marzo : number = 0;
+  let enero: number = 0;
+  let febrero: number = 0;
+  let marzo: number = 0;
   for (let i: number = 0; i < 4; i++) {
     enero = enero + ventas[i];
   }
@@ -30,9 +53,10 @@ function mostrarPromedioMensual(ventas: number[]): void {
   for (let i: number = 8; i < ventas.length; i++) {
     marzo = marzo + ventas[i];
   }
-  suma=enero+febrero+marzo
-  promedio =  suma/ (ventas.length/4);
-  console.log("promedio venta semanal : ", promedio);}
+  suma = enero + febrero + marzo;
+  promedio = suma / (ventas.length / 4);
+  console.log("promedio venta semanal : ", promedio);
+}
 //------------------------------------------------
 function mostrarPromedioSemanal(ventas: number[]): void {
   let suma: number = 0;
@@ -65,21 +89,13 @@ function mostrarVentaSemanalMinima(ventas: number[]): void {
 
 //---------------------------------------------------
 function mostrarVentaSemanalMaxima(ventas: number[]): void {
-  let maximo: number = ventas[0];
-  let semana: number = 0;
-  for (let i: number = 0; i < ventas.length; i++) {
-    if (maximo < ventas[i]) {
-      maximo = ventas[i];
-      semana = i;
-    }
-  }
   console.log(
     "venta maxima: ",
-    maximo,
+    calcularMaximo(ventas),
     "semana",
-    semana,
+    mejorSemana(ventas),
     "mes",
-    calcularmes(semana)
+    calcularmes(mejorSemana(ventas))
   );
 }
 //------------------------------------------------------
@@ -102,21 +118,38 @@ function mostrarVentas(
         separador();
 
         break;
-      /* case 1:
-        ventaSemanalMaxima(ventasVendedor2);
+      case 1:
+        mostrarVentaSemanalMaxima(ventasVendedor2);
+        mostrarVentaSemanalMinima(ventasVendedor2);
+        mostrarPromedioSemanal(ventasVendedor2);
+        mostrarPromedioMensual(ventasVendedor2);
+        separador();
         break;
       case 2:
-        ventaSemanalMaxima(ventasVendedor3);
+        mostrarVentaSemanalMaxima(ventasVendedor3);
+        mostrarVentaSemanalMinima(ventasVendedor3);
+        mostrarPromedioSemanal(ventasVendedor3);
+        mostrarPromedioMensual(ventasVendedor3);
+        separador();
         break;
       case 3:
-        ventaSemanalMaxima(ventasVendedor4);
+        mostrarVentaSemanalMaxima(ventasVendedor4);
+        mostrarVentaSemanalMinima(ventasVendedor4);
+        mostrarPromedioSemanal(ventasVendedor4);
+        mostrarPromedioMensual(ventasVendedor4);
+        separador();
         break;
       case 4:
-        ventaSemanalMaxima(ventasVendedor5);
-        break;*/
+        mostrarVentaSemanalMaxima(ventasVendedor5);
+        mostrarVentaSemanalMinima(ventasVendedor5);
+        mostrarPromedioSemanal(ventasVendedor5);
+        mostrarPromedioMensual(ventasVendedor5);
+        separador();
+        break;
     }
   }
 }
+
 //------------------Programa Principal--------------------
 let vendedores: string[] = new Array(
   "Camila",
@@ -203,4 +236,4 @@ mostrarVentas(
   ventasVendedor3,
   ventasVendedor4,
   ventasVendedor5
-):
+);
